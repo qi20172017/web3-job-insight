@@ -145,3 +145,7 @@ def init_database():
     engine = create_database_engine()
     Base.metadata.create_all(engine)
     print("数据库表创建成功！") 
+
+
+if __name__ == "__main__":
+    init_database()
