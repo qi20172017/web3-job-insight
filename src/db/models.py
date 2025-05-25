@@ -21,32 +21,42 @@ class JobPosting(Base):
     id = Column(Integer, primary_key=True, autoincrement=True)
     
     # 基本信息
+    job_id = Column(String(255), nullable=False, comment='职位ID')
     title = Column(String(255), nullable=False, comment='职位名称')
     company = Column(String(255), nullable=False, comment='公司名称')
+    company_id = Column(String(255), nullable=False, comment='公司ID')
+    company_logo = Column(String(500), comment='公司Logo')
+    company_twitter = Column(String(255), comment='公司Twitter')
+    company_website = Column(String(255), comment='公司官网')
     location = Column(String(255), comment='工作地点')
     job_type = Column(String(50), comment='工作类型（全职/兼职/实习）')
     experience_level = Column(String(50), comment='经验要求')
-    
+    education_level = Column(String(50), comment='学历要求')
+
     # 薪资信息
     salary_min = Column(Integer, comment='最低薪资')
     salary_max = Column(Integer, comment='最高薪资')
+    unit_text = Column(String(50), comment='薪资单位')
     salary_currency = Column(String(10), default='CNY', comment='货币单位')
     
     # 职位描述
     description = Column(Text, comment='职位描述原文')
     requirements = Column(Text, comment='职位要求')
     benefits = Column(Text, comment='福利待遇')
-    
+    application_count = Column(Integer, comment='申请人数')
+    tags = Column(String(500), comment='标签')
+
     # 来源信息
     source_url = Column(String(500), comment='原始链接')
     source_platform = Column(String(50), comment='来源平台')
     
     # 时间信息
     posted_date = Column(DateTime, comment='发布时间')
+    last_updated_date = Column(DateTime, comment='最后更新时间')
+    last_application_date = Column(DateTime, comment='最后申请时间')
     crawl_date = Column(DateTime, default=datetime.now, comment='爬取时间')
-    
+    updated_date = Column(DateTime, default=datetime.now, comment='更新时间')
     # Web3相关字段
-    is_web3_related = Column(Boolean, default=False, comment='是否Web3相关')
     blockchain_platforms = Column(String(500), comment='区块链平台')
     programming_languages = Column(String(500), comment='编程语言')
     web3_skills = Column(String(500), comment='Web3技能')
